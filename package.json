@@ -17,10 +17,14 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
+    "body-parser": "^1.18.3",
     "kexec": "^3.0.0",
     "nodemon": "^1.18.6"
   },
   "dependencies": {
-    "express": "^4.16.4"
+    "apollo-server-express": "^2.2.2",
+    "express": "^4.16.4",
+    "graphql": "^14.0.2",
+    "graphql-tools": "^4.0.3"
   }
 }
