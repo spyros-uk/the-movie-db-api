@@ -1,0 +1,26 @@
+{
+  "name": "the-movie-db-api",
+  "version": "1.0.0",
+  "description": "Wraper around the movie db API",
+  "author": "Spyros Papaioannou",
+  "keywords": [],
+  "license": "ISC",
+  "scripts": {
+    "prod": "node index",
+    "dev": "nodemon index.js --exec babel-node"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-async-generator-functions": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "kexec": "^3.0.0",
+    "nodemon": "^1.18.6"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
