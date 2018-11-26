@@ -1,13 +1,13 @@
 import { gql } from "apollo-server-express"
-import moviesResponse from "../data/movies";
+import fetch from "node-fetch"
 
-const movies = getTransformedMovies(moviesResponse.results);
-
+const API_KEY = "ac9aa1940782d32e686d674790dc699d";
 const typeDefs = gql`
   type Movie {
     id: Int,
     title: String,
     rating: Float,
+    releaseDate: String,
     plotSummary: String,
     thumbnailUri: String,
     posterImageUrl: String,
@@ -15,15 +15,14 @@ const typeDefs = gql`
     
   }
   type Query {
-    movies: [Movie],
+    movies(title: String): [Movie],
     movie(id: Int!): Movie
   }
 `;
-
 const resolvers = {
 	Query: {
-		movies: () => movies,
-		movie: (root, { id }) => movies.find(movie => movie.id === id)
+		movies: (root, { title }) => getMoviesByTitle(title),
+		movie: (root, { id }) => this.movies.then(movies => movies.find(movie => movie.id === id))
 	}
 };
 
@@ -74,4 +73,13 @@ function getThumbnailUri(posterPath) {
 
 function getPosterImageUril(posterPath) {
 	return `${getBaseImageURL()}/w500/${posterPath}`;
+}
+
+function getMoviesByTitle(query) {
+	const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(
+		query
+	)}`;
+	return fetch(url)
+		.then(response => response.json())
+		.then(jsonResponse => getTransformedMovies(jsonResponse.results))
 }
